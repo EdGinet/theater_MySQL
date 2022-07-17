@@ -1,0 +1,8 @@
+Tables :
+- Cinémas : adresse, nombre de places
+- Séances : horaire, date
+- Films : durée
+- Horaires
+- Tarifs : prix, description
+
+Faire le schéma sur excalidraw.com

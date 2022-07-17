@@ -1,0 +1,5 @@
+Fait le 15/07/2022 :
+- Tables BDD
+
+A FAIRE :
+Clé étrangères dans les tables -> theater_sessions, tickets, added_sessions
