@@ -3,4 +3,7 @@ Fait le 15/07/2022 :
 
 A FAIRE :
 Clé étrangères dans les tables ->tickets, added_sessions
-Refaire le schéma avec "Remaining_Seats"
+
+Refaire le schéma :
+- Changer 'Seats' pour 'Remaining_Seats' dans theater_sessions
+- Ajouter 'PostalCode' et 'City' dans theaters
