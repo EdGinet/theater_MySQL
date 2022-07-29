@@ -2,53 +2,59 @@ CREATE DATABASE IF NOT EXISTS theater_db CHARACTER SET utf8mb4 COLLATE utf8mb4_u
 
 
 CREATE TABLE theaters (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    theater_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Name VARCHAR(30) NOT NULL,
     Address VARCHAR(30) NOT NULL,
     PostalCode INTEGER NOT NULL,
     City VARCHAR(30) NOT NULL
-);
+) ENGINE=INNODB;
 
 CREATE TABLE theater_sessions (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    FilmTitle VARCHAR(30) NOT NULL,
-    Session_Schedule DATETIME NOT NULL,
+    theater_session_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    FilmTitle VARCHAR(100) NOT NULL,
+    Session_Schedule TIME NOT NULL,
     FilmGenre VARCHAR(30) NOT NULL,
     Remaining_Seats INTEGER NOT NULL,
-    FOREIGN KEY (id) REFERENCES theaters(id),
-    FOREIGN KEY (id) REFERENCES users(id)
+    theater_id INTEGER,
+    ticket_id INTEGER, 
+    FOREIGN KEY (theater_id) REFERENCES theater_sessions(theater_session_id),
+    FOREIGN KEY (ticket_id) REFERENCES theater_sessions(theater_session_id)
 
-);
+) ENGINE=INNODB;
 
 CREATE TABLE tickets (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ticket_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Description VARCHAR(30) NOT NULL,
     Price FLOAT NOT NULL,
     Booking DATETIME NOT NULL,
-    FOREIGN KEY (id) REFERENCES customers(id)
+    customer_id INTEGER,
+    FOREIGN KEY (customer_id) REFERENCES tickets(ticket_id)
 
-);
+) ENGINE=INNODB;
 
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    users_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Username VARCHAR(30) NOT NULL,
     Password VARCHAR(30) NOT NULL
-);
+) ENGINE=INNODB;
 
 CREATE TABLE added_sessions (
+    added_session_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Date DATETIME,
-    FOREIGN KEY (id) REFERENCES users(id),
-    FOREIGN KEY (id) REFERENCES theater_sessions(id)
-);
+    users_id INTEGER,
+    theater_session_id INTEGER,
+    FOREIGN KEY (users_id) REFERENCES added_sessions(added_session_id),
+    FOREIGN KEY (theater_session_id) REFERENCES added_sessions(added_session_id)
+) ENGINE=INNODB;
 
 CREATE TABLE customers (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    customer_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     Username VARCHAR(30) NOT NULL,
     Password VARCHAR(30) NOT NULL,
     Email VARCHAR(30) NOT NULL,
     LastName VARCHAR(30) NOT NULL,
     FirstName VARCHAR(30) NOT NULL
-);
+) ENGINE=INNODB;
 
 
 
@@ -91,3 +97,9 @@ INSERT INTO theater_sessions (FilmTitle, Session_Schedule, FilmGenre, Remaining_
 ('OKA!', '14:00', 'Drama', 35),
 ('After Earth', '17:40', 'Action|Adventure|Sci-Fi|IMAX', 4),
 ('Tonight and Every Night', '12:40', 'Musical', 5);
+
+INSERT INTO customers (FirstName, LastName, Email, Username, Password) VALUES
+('Zorine', 'Hallett', 'zhallett0@jimdo.com', 'zhallett0', 'GemeRjR5'),
+('Salem', 'Winkett', 'swinkett1@themeforest.net', 'swinkett1', '7JhQpz8ruDsa'),
+('Odella', 'Noyes', 'onoyes2@woothemes.com', 'onoyes2', 'Bjt9LQ'),
+('Hunt', 'Erwin', 'herwin3@senate.gov', 'herwin3', 'xMEcUnn');

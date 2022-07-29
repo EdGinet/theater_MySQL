@@ -1,9 +1,3 @@
-Fait le 15/07/2022 :
-- Tables BDD
+26/07/2022
 
-A FAIRE :
-Clé étrangères dans les tables ->tickets, added_sessions
-
-Refaire le schéma :
-- Changer 'Seats' pour 'Remaining_Seats' dans theater_sessions
-- Ajouter 'PostalCode' et 'City' dans theaters
+Refaire le schéma 
